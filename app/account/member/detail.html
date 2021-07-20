@@ -1,0 +1,67 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">{{ member.name }}</h3>
+</div>
+
+<div class="modal-body">
+    
+	<form style="max-width:400px;" ng-submit="update(member)">
+		<div uib-alert ng-class="'alert-danger'" close="closeResponse()" ng-if="response.success === false">
+                {{response.message}}
+            </div>
+            <div uib-alert ng-class="'alert-success'" close="closeResponse()" ng-if="response.success === true">
+                {{response.message}}
+            </div>
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" ng-model="member.name" readonly id="username" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="text" ng-model="member.email" readonly id="email" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="firstname">First Name</label>
+			<input type="text" ng-model="member.first_name"  id="first_name" class="form-control">
+		</div>
+		<div class="form-group">
+			<label for="lastname">Last Name</label>
+			<input type="text" ng-model="member.last_name"  id="last_name" class="form-control">
+		</div>
+		<!--div class="form-group">
+			<label for="newPassword">New password:</label>
+			<input type="password" id="newPassword" ng-model="member.newPassword" aria-describedby="newPasswordHelp" required minlength="8" maxlength="128" class="form-control">
+			<span class="help-block" id="newPasswordHelp"></span>
+		</div>
+		<div class="form-group">
+			<label for="verifyPassword">Verify password:</label>
+			<input type="password" id="verifyPassword" ng-model="member.verifyPassword" aria-describedby="verifyPasswordHelp" required minlength="8" maxlength="128" class="form-control">
+			<span class="help-block" id="verifyPasswordHelp"></span>
+		</div-->
+		<input type="submit" class="btn btn-primary" value="Update">
+	</form>
+		<div class="form-group">
+			<label for="availableApps">Available Apps</label>
+			<table class="table fusio-table-tab">
+                    <colgroup>
+                        <col width="20" />
+                        <col width="*" />
+                    </colgroup>
+                    <tbody>
+                    <tr ng-repeat="ownerapp in member.ownerapps">
+                        <!--td><input type="checkbox" value="{{ownerapp.name}}" id="ownerapp-{{ownerapp.id}}" ng-checked="selected.indexOf(ownerapp.name) > -1" ng-click="toggleOwnerApp(ownerapp.name)"></td-->
+                        <td><label for="ownerapp-{{ownerapp.id}}">{{ownerapp.name}}</label></td>
+						<td><label for="ownerapp-{{ownerapp.id}}">{{ownerapp.description}}</label></td>
+						<td><button ng-if="!ownerapp.installed" class="btn btn-danger" ng-click="enableAppToMember(ownerapp,member.id)">Enable</button>
+						<button ng-if="ownerapp.installed"  class="btn btn-warning" ng-click="disableAppFromMember(ownerapp,member.id)">Disable</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+		</div>
+		
+    
+</div>
+
+<div class="modal-footer">
+    <button type="button" ng-click="close()" class="btn btn-default">Close</button>
+</div>

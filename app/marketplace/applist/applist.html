@@ -1,0 +1,51 @@
+
+<div class="row">
+    <div class="col-md-2 fusio-sidebar" ng-include src="'app/marketplace/nav.html'"></div>
+    <div class="col-md-10">
+        <div class="fusio-content">
+            <h2>Application List</h2>
+            <div uib-alert ng-class="'alert-info'">
+                List of application that you can use by free.
+            </div>
+
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="*" />
+                    <col width="200" />
+					<col width="200" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>App Name</th>
+					<th>Description</th>
+					<th>Status</th>
+                    <!--th>Create date</th-->
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="app in apps">
+                    <td>{{ app.name }}</td>
+					<td>{{ app.description }}</td>
+					<td>
+						<span ng-switch="app.installed">
+							<span ng-switch-when="0"><span class="label label-danger fusio-badge">InActive</span></span>
+							<span ng-switch-when="1"><span class="label label-success fusio-badge">Active</span></span>
+						</span>
+					</td>
+                    <!--td>{{ app.date | date:'shortDate' }}</td-->
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button class="btn btn-default" ng-click="showAppDetail(app)">Show</button>
+                            <button ng-if="!app.installed" class="btn btn-warning" ng-click="install(app)">Install</button>
+							<button ng-if="app.installed"class="btn btn-danger" ng-click="uninstall(app)">UnInstall</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--a ng-click="createApp()" class="btn btn-primary" role="button">Create</a-->
+        </div>
+    </div>
+</div>

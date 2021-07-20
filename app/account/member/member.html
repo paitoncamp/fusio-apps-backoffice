@@ -1,0 +1,52 @@
+
+<div class="row">
+    <div class="col-md-2 fusio-sidebar" ng-include src="'app/account/nav.html'"></div>
+    <div class="col-md-10">
+        <div class="fusio-content">
+            <h2>Members</h2>
+            <div uib-alert ng-class="'alert-info'">
+                List of members, who you allowed access to some of the apps you register and what roles they have in those apps.
+            </div>
+
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="*" />
+                    <col width="200" />
+					<col width="200" />
+					<col width="200" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>User Name</th>
+					<th>Email</th>
+					<th>Apps</th>
+					<th>Status</th>
+                    <th>Create date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="member in members">
+                    <td>{{ member.name }}</td>
+					<td>{{ member.email }}</td>
+					<td><span ng-repeat="app in member.memberapps" class="label label-primary fusio-badge">{{app.name}}</span></td>
+					<td><span ng-switch="member.status">
+							<span ng-switch-when="2"><span class="label label-danger fusio-badge">Not Active</span></span>
+							<span ng-switch-when="1"><span class="label label-success fusio-badge">Active</span></span>
+						</span>
+					</td>
+                    <td>{{ member.date | date:'shortDate' }}</td>
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button class="btn btn-default" ng-click="showMember(member)">Show</button>
+                            <button class="btn btn-danger" ng-click="deleteMember(member)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a ng-click="addMember()" class="btn btn-primary" role="button">Add New Member</a>
+        </div>
+    </div>
+</div>

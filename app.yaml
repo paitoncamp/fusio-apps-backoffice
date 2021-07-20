@@ -1,0 +1,6 @@
+version: 0.0.1
+description: 'The backoffice app is designed to quickly setup Apps & Members for tenant owner.'
+screenshot: 'https://raw.githubusercontent.com/apioo/fusio/master/doc/_static/developer.png'
+website: 'https://github.com/paitoncamp/apps-backoffice'
+downloadUrl: 'https://github.com/paitoncamp/apps-backoffice/archive/v0.0.1.zip'
+sha1Hash: a4fcdba93583b6e73b6de17356ebf07cdd2498a2

@@ -1,0 +1,46 @@
+
+<div class="row">
+    <div class="col-md-2 fusio-sidebar" ng-include src="'app/marketplace/nav.html'"></div>
+    <div class="col-md-10">
+        <div class="fusio-content">
+            <h2>Installed App</h2>
+            <div uib-alert ng-class="'alert-info'">
+                List of installed app
+            </div>
+
+            <table class="table">
+                <colgroup>
+                    <col width="*" />
+                    <col width="200" />
+                    <col width="200" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>App Name</th>
+					<th>Description</th>
+					
+					<th>Status</th>
+                    <th>Create date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="app in apps">
+                    <td>{{ app.name }}</td>
+					<td>{{ app.description }}</td>
+					
+					<td>{{ member.status }}</td>
+                    <td>{{ member.date | date:'shortDate' }}</td>
+                    <td>
+                        <div class="btn-group pull-right" role="group">
+                            <button class="btn btn-default" ng-click="showAppDetail(app)">Show</button>
+                            <button class="btn btn-danger" ng-click="uninstallApp(app)">Uninstall</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--a ng-click="createApp()" class="btn btn-primary" role="button">Create</a-->
+        </div>
+    </div>
+</div>
